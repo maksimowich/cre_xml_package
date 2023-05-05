@@ -53,6 +53,7 @@ def recreate_tables_and_load_xml_files(connection_string: str,
                                        db_name: str):
     if loading_type not in LOADING_TYPES.keys():
         print("Specified loading_type is not supported.")
+        return
     if db_name not in DB_METHODS.keys():
         print("Specified db_name is not supported.")
         return
