@@ -1,3 +1,4 @@
 .venv
 .idea
 cre_xml_parser/scripts
+Makefile
