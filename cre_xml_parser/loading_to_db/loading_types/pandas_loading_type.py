@@ -26,7 +26,6 @@ def save_df_to_db(df_of_rows: pd.DataFrame,
         for _, row in df_of_rows.iterrows():
             values_list.append("(" + ", ".join(map(str, row)).replace("nan", "NULL") + ")")
         insert_query = "INSERT INTO {} ({}) VALUES {}".format(table_name, str_for_columns, ",".join(values_list))
-        thread = threading.Thread(target=execute_insert_query,
-                                  args=(engine, insert_query))
+        thread = threading.Thread(target=execute_insert_query, args=(engine, insert_query, table_name, df_of_rows.shape[0]))
         thread.start()
         threads.append(thread)
