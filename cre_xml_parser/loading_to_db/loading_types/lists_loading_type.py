@@ -29,7 +29,6 @@ def save_list_to_db(list_of_rows: list,
                 map(lambda x: str(row_dict.get(x)) if row_dict.get(x) is not None else 'Null', list_of_column_names)))
             list_of_str_for_values.append("(" + row_to_append_in_str + ")")
         insert_query = "INSERT INTO {} VALUES {}".format(table_name, ','.join(list_of_str_for_values))
-        thread = threading.Thread(target=execute_insert_query,
-                                  args=(engine, insert_query))
+        thread = threading.Thread(target=execute_insert_query, args=(engine, insert_query, table_name, len(list_of_rows)))
         thread.start()
         threads.append(thread)

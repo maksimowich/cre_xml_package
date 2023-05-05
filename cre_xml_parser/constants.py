@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from os.path import dirname
 
 
 TAGS = [
@@ -50,7 +51,7 @@ def get_table_name_by_tag(tag: str):
 
 
 def get_tag_to_table_types_dict():
-    xml_root = ET.parse('./resources/SingleFormat.xsd').getroot()
+    xml_root = ET.parse(dirname(__file__) + '/resources/SingleFormat.xsd').getroot()
     result_dict = {}
     for tag in TAGS:
         table_type = xml_root.findall(".//{http://www.w3.org/2001/XMLSchema}element[@name='" + tag + "']")[0].attrib['type']

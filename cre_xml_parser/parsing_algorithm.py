@@ -2,8 +2,7 @@ import datetime
 import xml.etree.ElementTree as ET
 from typing import Callable
 from .constants import TAGS, FIELD_NAMES_TO_EXCLUDE, TABLES_HJID, get_table_name_by_tag
-from .loading_to_db.loading_types import LOADING_TYPE_TO_ADD_ROW_FUNCTION
-from .loading_to_db.loading_types import LOADING_TYPE_TO_GET_ROW_FROM_FIELD_NAMES_AND_FIELD_VALUES_FUNCTION
+from .loading_to_db.loading_types.loading_types import LOADING_TYPES
 
 
 def get_field_value(expected_type: str,
@@ -95,9 +94,8 @@ def parse_xml_file(path_to_xml_file: str,
                    tables_current_hjid: dict,
                    loading_type: str,
                    tag_to_row_names_to_db_names_dict: dict):
-    add_row_function = LOADING_TYPE_TO_ADD_ROW_FUNCTION[loading_type]
-    get_row_from_field_names_and_filed_values_function = \
-        LOADING_TYPE_TO_GET_ROW_FROM_FIELD_NAMES_AND_FIELD_VALUES_FUNCTION[loading_type]
+    add_row_function = LOADING_TYPES[loading_type]['ADD_ROW']
+    get_row_from_field_names_and_filed_values_function = LOADING_TYPES[loading_type]['GET_ROW']
     xml_root = ET.parse(path_to_xml_file).getroot()
     for tag in TAGS:  # парсим данные по тегу и накапливаем во фрейм
         if tag == 'MONTHLY_DETAIL':
