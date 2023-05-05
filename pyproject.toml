@@ -3,7 +3,7 @@ name = "cre-xml-parser"
 packages = [
   { include = "cre_xml_parser" },
 ]
-version = "0.1.1"
+version = "1.0.1"
 description = ""
 authors = ["Alexander Maksimovich <cahr2001@mail.ru>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 sqlalchemy = "<2.0"
-pandas = "^2.0.1"
+pandas = ">2.0"
 psycopg2 = "^2.9.6"
 
 
